@@ -16,6 +16,25 @@ class Graph:
         # a is number of nodes
         self.a = len(self.adjacencyList)
 
+def DFS_Traversal(graph, v, visited, parent_node=-1):
+    # assign current node as
+    visited[v] = True
+
+    # loop for every edge (v, u)
+    for u in graph.adjacencyList[v]:
+
+        # if `u` is not visited
+        if not visited[u]:
+            if DFS_Traversal(graph, u, visited, v):
+                return True
+
+        # if `u` is visited, and `u` is not a parent_node
+        elif u != parent_node:
+            # found a back-edge
+            return True
+
+    # No back-edges were found
+    return False
 
 if __name__ == '__main__':
     # List of graph edges
@@ -27,6 +46,11 @@ if __name__ == '__main__':
     constructed_graph = Graph(edges)
 
     # note the visited and unvisited nodes
-    visited = [False] * constructed_graph.a
+    visited = {}
+    for key in constructed_graph.adjacencyList:
+        visited[key] = False
 
-    print(constructed_graph.adjacencyList)
+    if DFS_Traversal(constructed_graph, "A", visited):
+        print('Cycle detected')
+    else:
+        print('Cycle not detected')
