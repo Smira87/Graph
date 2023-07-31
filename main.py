@@ -13,8 +13,7 @@ class Graph:
                 self.adjacencyList[destination] = [source]
             else:
                 self.adjacencyList[destination] += source
-        # a is number of nodes
-        self.a = len(self.adjacencyList)
+
 
 def DFS_Traversal(graph, v, visited, parent_node=-1):
     # assign current node as
@@ -50,7 +49,7 @@ if __name__ == '__main__':
     for key in constructed_graph.adjacencyList:
         visited[key] = False
 
-    if DFS_Traversal(constructed_graph, "A", visited):
+    if DFS_Traversal(constructed_graph, "E", visited):
         print('Cycle detected')
     else:
         print('Cycle not detected')
