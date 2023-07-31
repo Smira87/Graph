@@ -13,7 +13,7 @@ class Graph:
                 self.adjacencyList[destination] = [source]
             else:
                 self.adjacencyList[destination] += source
-
+        # a is number of nodes
         self.a = len(self.adjacencyList)
 
 
