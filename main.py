@@ -21,11 +21,11 @@ def DFS_Traversal(graph, v, visited, parent_node=-1):
 
     # loop for every edge (v, u)
     for u in graph.adjacencyList[v]:
-
+        print(u)
         # if `u` is not visited
         if not visited[u]:
-            if DFS_Traversal(graph, u, visited, v):
-                return True
+            DFS_Traversal(graph, u, visited, v)
+
 
         # if `u` is visited, and `u` is not a parent_node
         elif u != parent_node:
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     for key in constructed_graph.adjacencyList:
         visited[key] = False
 
-    if DFS_Traversal(constructed_graph, "E", visited):
+    if DFS_Traversal(constructed_graph, "A", visited):
         print('Cycle detected')
     else:
         print('Cycle not detected')
